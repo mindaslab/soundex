@@ -1,0 +1,1 @@
+Ruby function to put Soundex of an word
