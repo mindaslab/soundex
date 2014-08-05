@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Karthikeyan A K"]
   s.email       = '77minds@gmail.com'
   s.files       = ["lib/soundex.rb"]
-  s.homepage    = ''
+  s.homepage    = 'https://github.com/mindaslab/soundex'
   s.license     = 'MIT'
 end
