@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/soundex.rb"]
   s.homepage    = 'https://github.com/mindaslab/soundex'
   s.license     = 'MIT'
+  s.add_development_dependency 'rspec'
 end
