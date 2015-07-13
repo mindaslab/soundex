@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    soundex (0.0.0)
+    soundex (0.1.1)
 
 GEM
   remote: https://rubygems.org/
