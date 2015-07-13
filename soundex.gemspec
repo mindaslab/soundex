@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'soundex'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2015-07-13'
   s.summary     = "Get American soundex of an word"
   s.description = "Get American soundex of an word"

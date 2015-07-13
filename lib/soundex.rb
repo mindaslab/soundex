@@ -5,7 +5,7 @@ class Soundex
   def initialize input
     self.original = input
     
-    process input if input.length > 0
+    process input if !input.nil? && input.length > 0
   end
 
   def remove_neighbors input

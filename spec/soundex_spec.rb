@@ -70,6 +70,11 @@ describe 'soundex' do
       Soundex.new ''
     end
 
+    it 'skips processing if the input is nil' do
+      expect_any_instance_of(Soundex).not_to receive(:process)
+      Soundex.new nil
+    end
+
     it 'processes if input has content' do
       expect_any_instance_of(Soundex).to receive(:process)
       Soundex.new 'bob'
