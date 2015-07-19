@@ -1,22 +1,54 @@
-def soundex word
-  text = word
-  soundex = ""
-  loop do
-    text = text.downcase
-    first_letter = text[0]
-    other_letters = text[1..text.length]
-    other_letters = other_letters.gsub /[aeiouyhw]/, ''
-    other_letters = other_letters.gsub /[bfpv]/, '1'
-    other_letters = other_letters.gsub /[cgjkqsxz]/, '2'
-    other_letters = other_letters.gsub /[dt]/, '3'
-    other_letters = other_letters.gsub /[i]/, '4'
-    other_letters = other_letters.gsub /[mn]/, '5'
-    other_letters = other_letters.gsub /r/, '6'
-    (1..6).to_a.each do |num|
-      other_letters = other_letters.gsub Regexp.new("#{num}+"), num.to_s
-    end
-    text = first_letter + other_letters
-    break if text.match /\w\d+/
+class Soundex
+  attr_accessor :original
+  attr_accessor :soundex
+
+  def initialize input
+    self.original = input
+    
+    process input if !input.nil? && input.length > 0
   end
-  (text + "0000")[0..3]
+
+  def remove_neighbors input
+    text = input.dup
+    text.gsub!(/[bfpv][hw]{0,1}[bfpv]/) { |m| m[0] }
+    text.gsub!(/[cgjkqsxz][hw]{0,1}[cgjkqsxz]/) { |m| m[0] }
+    text.gsub!(/[dt][hw]{0,1}[dt]/) { |m| m[0] }
+    text.gsub!(/l[hw]{0,1}l/, 'l')
+    text.gsub!(/[mn][hw]{0,1}[mn]/) { |m| m[0] }
+    text.gsub!(/r[hw]{0,1}r/, 'r')
+    text
+  end
+
+  def strip_vowels input
+    input.gsub(/[aeiouyhw]/, '')
+  end
+
+  def to_numbers input
+    text = input.dup
+    text.gsub!(/[bfpv]/, '1')
+    text.gsub!(/[cgjkqsxz]/, '2')
+    text.gsub!(/[dt]/, '3')
+    text.gsub!(/[l]/, '4')
+    text.gsub!(/[mn]/, '5')
+    text.gsub!(/r/, '6')
+    text
+  end
+
+  def process input
+    first_letter = input[0]
+    input = input.downcase
+    input = remove_neighbors(input)
+    input = strip_vowels(input)
+
+    input = input[1..-1] unless first_letter.downcase.match(/[aeiouyhw]/)
+    input = to_numbers(input)
+    
+    soundex = first_letter + input
+    soundex = soundex.ljust(4, '0')
+    self.soundex = soundex[0..3]
+  end
+
+  def to_s
+    self.soundex
+  end
 end

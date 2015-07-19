@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/grossadamm/soundex.svg?branch=master)](https://travis-ci.org/grossadamm/soundex)
+
 Ruby function to find american Soundex of an word
 
 Based upon https://en.wikipedia.org/wiki/Soundex
@@ -16,7 +18,6 @@ Use it like this
 ```ruby
 require 'soundex'
 
-soundex "Madras"
-soundex "Madharas"
+Soundex.new "Madras"
+Soundex.new "Madharas"
 ```
-
