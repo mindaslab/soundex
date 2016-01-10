@@ -10,7 +10,7 @@ Usage
 Install by using this code
 
 ```bash
-$ gem intall soundex
+$ gem install soundex
 ```
 
 Use it like this
